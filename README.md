@@ -1,4 +1,4 @@
-# MyFun
+# myutils
 
 My useless utility functions for R.
 
