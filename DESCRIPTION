@@ -6,7 +6,7 @@ Maintainer: Bangyou Zheng <bangyou.zheng@csiro.au>
 Authors@R: person("Bangyou", "Zheng", 
                email = "bangyou.zheng@csiro.au", 
                role = c("aut", "cre"))
-Description: A collection of useless functions for R.
+Description: A collection of useless utility functions for R.
 License: MIT + file LICENSE
 URL: https://myutils.bangyou.me/,
     https://github.com/byzheng/myutils
