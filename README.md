@@ -1,7 +1,9 @@
-# myfun
-My useless functions for R
+# MyFun
+
+My useless functions for R.
 
 
+## Installation
 To install the latest development version: 
 
 ```{r}

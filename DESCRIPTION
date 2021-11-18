@@ -1,12 +1,20 @@
 Package: MyFun
 Type: Package
-Title: What the Package Does (Title Case)
+Title: My useless functions for R
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Maintainer: Bangyou Zheng <bangyou.zheng@csiro.au>
+Authors@R: person("Bangyou", "Zheng", 
+               email = "bangyou.zheng@csiro.au", 
+               role = c("aut", "cre"))
+Description: A collection of useless functions for R.
+License: MIT + file LICENSE
+URL: https://myfun.bangyou.me/,
+    https://github.com/byzheng/myfun
+BugReports: https://github.com/byzheng/myfun/issues
 Encoding: UTF-8
-LazyData: true
+Imports: parallel,
+    snow,
+    snowfall
 RoxygenNote: 7.1.2
+Suggests: 
+    testthat

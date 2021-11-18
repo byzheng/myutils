@@ -1,18 +1,30 @@
 
 
-#' Title
+#' A wrap function to run parallel in different platforms
 #'
-#' @param x 
-#' @param fun 
-#' @param ... 
+#' @details
+#' The supported platforms include
+#' * local computer through snowfall package (default)
+#' * MPI cluster through snow package
+#' * Windows HPC pack for parameter sweep job
 #'
-#' @return
+#' @param x A numeric vector for parallel
+#' @param fun A function
+#' @param cpus Number of CPUs for snowfall package
+#' @param ... Other arguments passed to fun
+#'
+#' @return Result of parallel function.
 #' @export
-#'
 #' @examples
-myRunParallel <- function(x, fun, cpus = parallel::detectCores() - 1, ...) {
+#' \dontrun{
+#' fun <- function(i, a) {
+#'   return(i * a)
+#' }
+#' run_parallel(seq(1, 10), fun, a = 2)
+#' }
+run_parallel <- function(x, fun, cpus = parallel::detectCores() - 1, ...) {
     # Run parallel
-    cl <- snow::getMPIcluster() 
+    cl <- snow::getMPIcluster()
     args = commandArgs(trailingOnly = TRUE)
     if (!is.null(cl)) {
         # In case of MPI cluster, e.g. pearcey
@@ -29,11 +41,10 @@ myRunParallel <- function(x, fun, cpus = parallel::detectCores() - 1, ...) {
         r <- NULL
     } else {
         # In other case for local computer
-        library(snowfall)
-        sfInit(cpus = cpus, 
-               parallel = TRUE, slaveOutfile = 'tmp.txt')
-        r <- sfLapply(x, fun, ...)
-        sfStop()
+        snowfall::sfInit(cpus = cpus,
+               parallel = TRUE)
+        r <- snowfall::sfLapply(x, fun, ...)
+        snowfall::sfStop()
     }
     r
 }
