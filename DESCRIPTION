@@ -1,4 +1,4 @@
-Package: MyFun
+Package: myfun
 Type: Package
 Title: My useless functions for R
 Version: 0.1.0
