@@ -1,12 +1,11 @@
 # MyFun
 
-My useless functions for R.
+My useless utility functions for R.
 
 
 ## Installation
 To install the latest development version: 
 
 ```{r}
-library(devtools)
-install_github("byzheng/myfun")
+remotes::install_github("byzheng/myutils")
 ```
