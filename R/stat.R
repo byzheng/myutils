@@ -12,3 +12,5 @@
 rsq <- function (x, y) {
     stats::cor(x, y) ^ 2
 }
+
+

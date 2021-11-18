@@ -1,6 +1,6 @@
-Package: myfun
+Package: myutils
 Type: Package
-Title: My useless functions for R
+Title: My utility functions for R
 Version: 0.1.0
 Maintainer: Bangyou Zheng <bangyou.zheng@csiro.au>
 Authors@R: person("Bangyou", "Zheng", 
@@ -8,9 +8,9 @@ Authors@R: person("Bangyou", "Zheng",
                role = c("aut", "cre"))
 Description: A collection of useless functions for R.
 License: MIT + file LICENSE
-URL: https://myfun.bangyou.me/,
-    https://github.com/byzheng/myfun
-BugReports: https://github.com/byzheng/myfun/issues
+URL: https://myutils.bangyou.me/,
+    https://github.com/byzheng/myutils
+BugReports: https://github.com/byzheng/myutils/issues
 Encoding: UTF-8
 Imports: parallel,
     snow,
