@@ -1,0 +1,3 @@
+
+#' @importFrom snow setDefaultClusterOptions
+NULL

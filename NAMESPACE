@@ -2,3 +2,4 @@
 
 export(rsq)
 export(run_parallel)
+importFrom(snow,setDefaultClusterOptions)
