@@ -2,7 +2,7 @@
 % Please edit documentation in R/stat.R
 \name{rsq}
 \alias{rsq}
-\title{Squared R}
+\title{Squared coefficient of correlation (R2)}
 \usage{
 rsq(x, y)
 }
@@ -12,10 +12,10 @@ rsq(x, y)
 \item{y}{variable y}
 }
 \value{
-Squared R
+Squared coefficient of correlation (R2) or coefficient of determination.
 }
 \description{
-Squared R
+Squared coefficient of correlation (R2)
 }
 \examples{
 rsq(runif(10), runif(10))
