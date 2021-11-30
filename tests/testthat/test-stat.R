@@ -7,5 +7,5 @@ test_that("Statistics functions", {
         model_summarise() %>%
         as.vector() %>%
         as.numeric()
-    expect_equal(res, c(1, 0, 0))
+    expect_equal(res, c(10, 1, 0, 0))
 })

@@ -14,7 +14,13 @@ model_summarise(data, x = "x", y = "y")
 \item{y}{y variable name}
 }
 \value{
-A data frame with statistics indicators in columns
+A data frame with statistics indicators in columns including:
+\itemize{
+    \item{n: Number of rows}
+    \item{r2: Squared coefficient of correlation }
+    \item{bias: Average amount by which actual is greater than predicted}
+    \item{rmse: Root mean squared error}
+}
 }
 \description{
 Summarise a model with statistics indicators
