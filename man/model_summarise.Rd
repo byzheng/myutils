@@ -4,7 +4,7 @@
 \alias{model_summarise}
 \title{Summarise a model with statistics indicators}
 \usage{
-model_summarise(data, x = "x", y = "y")
+model_summarise(data, x = "x", y = "y", digits = NULL)
 }
 \arguments{
 \item{data}{A data frame to summarise}
@@ -12,6 +12,8 @@ model_summarise(data, x = "x", y = "y")
 \item{x}{x variable name}
 
 \item{y}{y variable name}
+
+\item{digits}{integer indicating the number of decimal places (round) or significant digits (signif) to be used.}
 }
 \value{
 A data frame with statistics indicators in columns including:
@@ -27,6 +29,7 @@ Summarise a model with statistics indicators
 }
 \examples{
 library(dplyr)
-data <- data.frame(x = 1:10, y = 1:10)
+data <- data.frame(x = 1:10, y = 1:10 + runif(10))
 data \%>\% model_summarise()
+data \%>\% model_summarise(digits = 2)
 }

@@ -52,16 +52,16 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL) {
         stop("y variable should be character with length 1: ", y)
     }
     res <- dplyr::summarise(data,
-                     n = n(),
+                     n = dplyr::n(),
                      r2 = rsq(.data[[x]], .data[[y]]),
                      bias = Metrics::bias(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
               .groups = "drop")
     if (!is.null(digits) && length(digits) == 1 && is.numeric(digits)) {
         res <- res %>%
-            mutate(r2 = round(r2, digits),
-                   bias = round(bias, digits),
-                   rmse = round(rmse, digits))
+            dplyr::mutate(r2 = round(.data$r2, digits),
+                   bias = round(.data$bias, digits),
+                   rmse = round(.data$rmse, digits))
     }
     res
 }
