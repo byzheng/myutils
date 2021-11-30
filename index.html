@@ -74,7 +74,10 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>To install the latest development version:</p>
-<pre class="{r}"><code>remotes::install_github("byzheng/myutils")</code></pre>
+<pre class="{r}"><code>if (!require("remotes")) {
+    install.packages("remotes")
+}
+remotes::install_github("byzheng/myutils")</code></pre>
 </div>
 </div>
   </div>
