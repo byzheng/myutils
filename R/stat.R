@@ -28,6 +28,7 @@ rsq <- function (x, y) {
 #' @param data A data frame to summarise
 #' @param x x variable name
 #' @param y y variable name
+#' @param digits integer indicating the number of decimal places (round) or significant digits (signif) to be used.
 #'
 #' @return A data frame with statistics indicators in columns including:
 #' \itemize{
@@ -40,19 +41,27 @@ rsq <- function (x, y) {
 #'
 #' @examples
 #' library(dplyr)
-#' data <- data.frame(x = 1:10, y = 1:10)
+#' data <- data.frame(x = 1:10, y = 1:10 + runif(10))
 #' data %>% model_summarise()
-model_summarise <- function(data, x = "x", y = "y") {
+#' data %>% model_summarise(digits = 2)
+model_summarise <- function(data, x = "x", y = "y", digits = NULL) {
     if (!(purrr::is_character(x) && length(x) == 1)) {
         stop("x variable should be character with length 1: ", x)
     }
     if (!(purrr::is_character(y) && length(y) == 1)) {
         stop("y variable should be character with length 1: ", y)
     }
-    dplyr::summarise(data,
+    res <- dplyr::summarise(data,
                      n = n(),
                      r2 = rsq(.data[[x]], .data[[y]]),
                      bias = Metrics::bias(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
               .groups = "drop")
+    if (!is.null(digits) && length(digits) == 1 && is.numeric(digits)) {
+        res <- res %>%
+            mutate(r2 = round(r2, digits),
+                   bias = round(bias, digits),
+                   rmse = round(rmse, digits))
+    }
+    res
 }
