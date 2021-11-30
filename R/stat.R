@@ -29,7 +29,13 @@ rsq <- function (x, y) {
 #' @param x x variable name
 #' @param y y variable name
 #'
-#' @return A data frame with statistics indicators in columns
+#' @return A data frame with statistics indicators in columns including:
+#' \itemize{
+#'     \item{n: Number of rows}
+#'     \item{r2: Squared coefficient of correlation }
+#'     \item{bias: Average amount by which actual is greater than predicted}
+#'     \item{rmse: Root mean squared error}
+#' }
 #' @export
 #'
 #' @examples
@@ -43,8 +49,10 @@ model_summarise <- function(data, x = "x", y = "y") {
     if (!(purrr::is_character(y) && length(y) == 1)) {
         stop("y variable should be character with length 1: ", y)
     }
-    dplyr::summarise(data, r2 = rsq(.data[[x]], .data[[y]]),
-              bias = Metrics::bias(.data[[x]], .data[[y]]),
-              rmse = Metrics::rmse(.data[[x]], .data[[y]]),
+    dplyr::summarise(data,
+                     n = n(),
+                     r2 = rsq(.data[[x]], .data[[y]]),
+                     bias = Metrics::bias(.data[[x]], .data[[y]]),
+                     rmse = Metrics::rmse(.data[[x]], .data[[y]]),
               .groups = "drop")
 }
