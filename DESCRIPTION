@@ -23,7 +23,11 @@ Imports:
     Metrics,
     weaana (>= 0.1.1),
     rapsimng (>= 0.3.0),
-    expDB (>= 0.1.0)
+    expDB (>= 0.1.0),
+    rproject,
+    htcondor
+Remotes: byzheng/rproject,
+    byzheng/htcondor
 RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 3.0.0),
