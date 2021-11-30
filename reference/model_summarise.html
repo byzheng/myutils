@@ -117,7 +117,7 @@
     <p>Summarise a model with statistics indicators</p>
     </div>
 
-    <pre class="usage"><span class='fu'>model_summarise</span><span class='op'>(</span><span class='va'>data</span>, x <span class='op'>=</span> <span class='st'>"x"</span>, y <span class='op'>=</span> <span class='st'>"y"</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>model_summarise</span><span class='op'>(</span><span class='va'>data</span>, x <span class='op'>=</span> <span class='st'>"x"</span>, y <span class='op'>=</span> <span class='st'>"y"</span>, digits <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +133,10 @@
     <tr>
       <th>y</th>
       <td><p>y variable name</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>integer indicating the number of decimal places (round) or significant digits (signif) to be used.</p></td>
     </tr>
     </table>
 
@@ -156,10 +160,13 @@
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> The following objects are masked from ‘package:base’:</span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-msg co'><span class='r-pr'>#&gt;</span>     intersect, setdiff, setequal, union</span>
-<span class='r-in'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, y <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span> <span class='op'>+</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span></span>
 <span class='r-in'><span class='va'>data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>model_summarise</span><span class='op'>(</span><span class='op'>)</span></span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>    n r2 bias rmse</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 10  1    0    0</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    n        r2       bias      rmse</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 10 0.9919927 -0.4439794 0.5264495</span>
+<span class='r-in'><span class='va'>data</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'>model_summarise</span><span class='op'>(</span>digits <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    n   r2  bias rmse</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1 10 0.99 -0.44 0.53</span>
 </pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
