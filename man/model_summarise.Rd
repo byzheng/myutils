@@ -4,7 +4,13 @@
 \alias{model_summarise}
 \title{Summarise a model with statistics indicators}
 \usage{
-model_summarise(data, x = "x", y = "y", digits = NULL)
+model_summarise(
+  data,
+  x = "x",
+  y = "y",
+  digits = NULL,
+  direction = c("wide", "long")
+)
 }
 \arguments{
 \item{data}{A data frame to summarise}
@@ -14,6 +20,8 @@ model_summarise(data, x = "x", y = "y", digits = NULL)
 \item{y}{y variable name}
 
 \item{digits}{integer indicating the number of decimal places (round) or significant digits (signif) to be used.}
+
+\item{direction}{The wide (default) or long format for the output}
 }
 \value{
 A data frame with statistics indicators in columns including:
@@ -32,4 +40,6 @@ library(dplyr)
 data <- data.frame(x = 1:10, y = 1:10 + runif(10))
 data \%>\% model_summarise()
 data \%>\% model_summarise(digits = 2)
+# Export as long format
+data \%>\% model_summarise(digits = 2, direction = "long")
 }

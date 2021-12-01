@@ -17,6 +17,7 @@ Imports:
     parallel,
     snowfall,
     tidyverse,
+    tidyr,
     magrittr,
     rlang,
     purrr,

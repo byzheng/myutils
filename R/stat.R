@@ -29,6 +29,7 @@ rsq <- function (x, y) {
 #' @param x x variable name
 #' @param y y variable name
 #' @param digits integer indicating the number of decimal places (round) or significant digits (signif) to be used.
+#' @param direction The wide (default) or long format for the output
 #'
 #' @return A data frame with statistics indicators in columns including:
 #' \itemize{
@@ -44,7 +45,10 @@ rsq <- function (x, y) {
 #' data <- data.frame(x = 1:10, y = 1:10 + runif(10))
 #' data %>% model_summarise()
 #' data %>% model_summarise(digits = 2)
-model_summarise <- function(data, x = "x", y = "y", digits = NULL) {
+#' # Export as long format
+#' data %>% model_summarise(digits = 2, direction = "long")
+model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c("wide", "long")) {
+    direction <- match.arg(direction)
     if (!(purrr::is_character(x) && length(x) == 1)) {
         stop("x variable should be character with length 1: ", x)
     }
@@ -62,6 +66,10 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL) {
             dplyr::mutate(r2 = round(.data$r2, digits),
                    bias = round(.data$bias, digits),
                    rmse = round(.data$rmse, digits))
+    }
+    if (direction == "long") {
+        res <- res %>%
+            tidyr::pivot_longer(cols = c("n", "r2", "bias", "rmse"), names_to = "indicator")
     }
     res
 }
