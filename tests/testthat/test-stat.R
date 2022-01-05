@@ -12,9 +12,18 @@ test_that("Statistics functions", {
 8,8.66079779248685
 9,9.62911404389888
 10,10.0617862704676'))
+    expect_error(model_summarise(res, digits = 2, direction = "dd"))
     res <- data %>%
         model_summarise(digits = 2) %>%
         as.vector() %>%
         as.numeric()
-    expect_equal(res, c(10, 0.99, -0.55, 0.63))
+    expect_equal(res, c(10, 0.99, 0.99, -0.55, 0.63))
+
+    res <- data %>%
+        model_summarise(digits = 2, direction = "long") %>%
+        magrittr::use_series("value") %>%
+        as.vector() %>%
+        as.numeric()
+    expect_equal(res, c(10, 0.99, 0.99, -0.55, 0.63))
+
 })

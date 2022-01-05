@@ -27,7 +27,8 @@ model_summarise(
 A data frame with statistics indicators in columns including:
 \itemize{
     \item{n: Number of rows}
-    \item{r2: Squared coefficient of correlation }
+    \item{r: Coefficient of correlation}
+    \item{r2: Squared coefficient of correlation}
     \item{bias: Average amount by which actual is greater than predicted}
     \item{rmse: Root mean squared error}
 }

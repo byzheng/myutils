@@ -18,6 +18,7 @@ Imports:
     snowfall,
     tidyverse,
     tidyr,
+    stats,
     magrittr,
     rlang,
     purrr,

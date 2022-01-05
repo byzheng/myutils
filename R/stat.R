@@ -34,7 +34,8 @@ rsq <- function (x, y) {
 #' @return A data frame with statistics indicators in columns including:
 #' \itemize{
 #'     \item{n: Number of rows}
-#'     \item{r2: Squared coefficient of correlation }
+#'     \item{r: Coefficient of correlation}
+#'     \item{r2: Squared coefficient of correlation}
 #'     \item{bias: Average amount by which actual is greater than predicted}
 #'     \item{rmse: Root mean squared error}
 #' }
@@ -57,6 +58,7 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
     }
     res <- dplyr::summarise(data,
                      n = dplyr::n(),
+                     r = stats::cor(.data[[x]], .data[[y]]),
                      r2 = rsq(.data[[x]], .data[[y]]),
                      bias = Metrics::bias(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
@@ -64,12 +66,13 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
     if (!is.null(digits) && length(digits) == 1 && is.numeric(digits)) {
         res <- res %>%
             dplyr::mutate(r2 = round(.data$r2, digits),
+                   r = round(.data$r, digits),
                    bias = round(.data$bias, digits),
                    rmse = round(.data$rmse, digits))
     }
     if (direction == "long") {
         res <- res %>%
-            tidyr::pivot_longer(cols = c("n", "r2", "bias", "rmse"), names_to = "indicator")
+            tidyr::pivot_longer(cols = c("n", "r", "r2", "bias", "rmse"), names_to = "indicator")
     }
     res
 }
