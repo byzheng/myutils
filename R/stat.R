@@ -24,20 +24,21 @@ rsq <- function (x, y) {
 }
 
 
-#' Average squared difference
+#' Relative root mean square error
 #'
 #' @param x variable x
 #' @param y variable y
 #'
-#' @return Average squared difference between two numeric vectors.
+#' @return Relative root mean square error.
 #' @export
 #'
 #' @examples
-#' mse(runif(10), runif(10))
-mse <- function(x, y) {
+#' rrmse(runif(10), runif(10))
+rrmse <- function(x, y) {
     .check_numeric_vector(x)
     .check_numeric_vector(y)
-    mean((x - y) * (x - y))
+    return(sqrt(mean((x - y)^2)/length(x)) *
+               1/mean(x))
 }
 
 #' Summarise a model with statistics indicators
@@ -53,9 +54,10 @@ mse <- function(x, y) {
 #'     \item{n: Number of rows}
 #'     \item{r: Coefficient of correlation}
 #'     \item{r2: Squared coefficient of correlation}
-#'     \item{mse: Average squared difference}
 #'     \item{bias: Average amount by which actual is greater than predicted}
+#'     \item{mse: Average squared difference}
 #'     \item{rmse: Root mean squared error}
+#'     \item{rrmse: Relative root mean squared error}
 #' }
 #' @export
 #'
@@ -78,9 +80,10 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
                      n = dplyr::n(),
                      r = stats::cor(.data[[x]], .data[[y]]),
                      r2 = rsq(.data[[x]], .data[[y]]),
-                     mse = mse(.data[[x]], .data[[y]]),
                      bias = Metrics::bias(.data[[x]], .data[[y]]),
+                     mse = Metrics::mse(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
+                     rrmse = rrmse(.data[[x]], .data[[y]]),
               .groups = "drop")
     if (!is.null(digits) && length(digits) == 1 && is.numeric(digits)) {
         res <- res %>%
@@ -88,11 +91,13 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
                    r = round(.data$r, digits),
                    mse = round(.data$mse, digits),
                    bias = round(.data$bias, digits),
-                   rmse = round(.data$rmse, digits))
+                   rmse = round(.data$rmse, digits),
+                   rrmse = round(.data$rrmse, digits))
     }
     if (direction == "long") {
         res <- res %>%
-            tidyr::pivot_longer(cols = c("n", "r", "r2", "mse", "bias", "rmse"), names_to = "indicator")
+            tidyr::pivot_longer(cols = c("n", "r", "r2", "bias", "mse", "rmse", "rrmse"),
+                                names_to = "indicator")
     }
     res
 }

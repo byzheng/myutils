@@ -8,9 +8,10 @@ test_that("Statistics functions", {
 
     expect_error(rsq("1", "a"))
     expect_equal(rsq(x, y), 0.967166, tolerance=1e-7)
+    expect_error(rrmse("1", "a"))
+    expect_equal(rrmse(x, y), 0.05054511, tolerance=1e-7)
 
-    expect_error(mse("1", "a"))
-    expect_equal(mse(x, y), 0.195, tolerance=1e-7)
+
 
     data <- read.csv(file = textConnection('x,y
 1,1.2655086631421
@@ -26,7 +27,7 @@ test_that("Statistics functions", {
 
     # Test model_summarise
     expect_error(model_summarise(res, digits = 2, direction = "dd"))
-    expect_value <- c(10, 0.99, 0.99, 0.39, -0.55, 0.63)
+    expect_value <- c(10, 0.99, 0.99, -0.55, 0.39, 0.63, 0.04)
     res <- data %>%
         model_summarise(digits = 2) %>%
         as.vector() %>%
