@@ -27,7 +27,7 @@ test_that("Statistics functions", {
 
     # Test model_summarise
     expect_error(model_summarise(res, digits = 2, direction = "dd"))
-    expect_value <- c(10, 0.99, 0.99, -0.55, 0.39, 0.63, 0.04)
+    expect_value <- c(10, 0.99, 0.99, -0.55, 0.39, 0.63, 0.11)
     res <- data %>%
         model_summarise(digits = 2) %>%
         as.vector() %>%

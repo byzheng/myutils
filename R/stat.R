@@ -37,8 +37,7 @@ rsq <- function (x, y) {
 rrmse <- function(x, y) {
     .check_numeric_vector(x)
     .check_numeric_vector(y)
-    return(sqrt(mean((x - y)^2)/length(x)) *
-               1/mean(x))
+    Metrics::rmse(x, y) / mean(x)
 }
 
 #' Summarise a model with statistics indicators
