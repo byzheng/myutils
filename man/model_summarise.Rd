@@ -29,6 +29,7 @@ A data frame with statistics indicators in columns including:
     \item{n: Number of rows}
     \item{r: Coefficient of correlation}
     \item{r2: Squared coefficient of correlation}
+    \item{mse: Average squared difference}
     \item{bias: Average amount by which actual is greater than predicted}
     \item{rmse: Root mean squared error}
 }

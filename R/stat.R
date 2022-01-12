@@ -23,6 +23,23 @@ rsq <- function (x, y) {
     stats::cor(x, y) ^ 2
 }
 
+
+#' Average squared difference
+#'
+#' @param x variable x
+#' @param y variable y
+#'
+#' @return Average squared difference between two numeric vectors.
+#' @export
+#'
+#' @examples
+#' mse(runif(10), runif(10))
+mse <- function(x, y) {
+    .check_numeric_vector(x)
+    .check_numeric_vector(y)
+    mean((x - y) * (x - y))
+}
+
 #' Summarise a model with statistics indicators
 #'
 #' @param data A data frame to summarise
@@ -36,6 +53,7 @@ rsq <- function (x, y) {
 #'     \item{n: Number of rows}
 #'     \item{r: Coefficient of correlation}
 #'     \item{r2: Squared coefficient of correlation}
+#'     \item{mse: Average squared difference}
 #'     \item{bias: Average amount by which actual is greater than predicted}
 #'     \item{rmse: Root mean squared error}
 #' }
@@ -60,6 +78,7 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
                      n = dplyr::n(),
                      r = stats::cor(.data[[x]], .data[[y]]),
                      r2 = rsq(.data[[x]], .data[[y]]),
+                     mse = mse(.data[[x]], .data[[y]]),
                      bias = Metrics::bias(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
               .groups = "drop")
@@ -67,12 +86,13 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
         res <- res %>%
             dplyr::mutate(r2 = round(.data$r2, digits),
                    r = round(.data$r, digits),
+                   mse = round(.data$mse, digits),
                    bias = round(.data$bias, digits),
                    rmse = round(.data$rmse, digits))
     }
     if (direction == "long") {
         res <- res %>%
-            tidyr::pivot_longer(cols = c("n", "r", "r2", "bias", "rmse"), names_to = "indicator")
+            tidyr::pivot_longer(cols = c("n", "r", "r2", "mse", "bias", "rmse"), names_to = "indicator")
     }
     res
 }
