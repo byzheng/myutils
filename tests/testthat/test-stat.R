@@ -9,7 +9,7 @@ test_that("Statistics functions", {
     expect_error(rsq("1", "a"))
     expect_equal(rsq(x, y), 0.967166, tolerance=1e-7)
     expect_error(rrmse("1", "a"))
-    expect_equal(rrmse(x, y), 0.05054511, tolerance=1e-7)
+    expect_equal(rrmse(x, y), 0.1238097, tolerance=1e-7)
 
 
 
