@@ -9,7 +9,8 @@ model_summarise(
   x = "x",
   y = "y",
   digits = NULL,
-  direction = c("wide", "long")
+  direction = c("wide", "long"),
+  ...
 )
 }
 \arguments{
@@ -21,7 +22,12 @@ model_summarise(
 
 \item{digits}{integer indicating the number of decimal places (round) or significant digits (signif) to be used.}
 
-\item{direction}{The wide (default) or long format for the output}
+\item{direction}{the wide (default) or long format for the output}
+
+\item{...}{other arguments passing to functions. Supporting arguments
+\itemize{
+    \item{nrmse_method: Method for nrmse}
+}}
 }
 \value{
 A data frame with statistics indicators in columns including:
@@ -32,7 +38,7 @@ A data frame with statistics indicators in columns including:
     \item{bias: Average amount by which actual is greater than predicted}
     \item{mse: Average squared difference}
     \item{rmse: Root mean squared error}
-    \item{rrmse: Relative root mean squared error}
+    \item{nrmse: Normalized root mean squared error}
 }
 }
 \description{

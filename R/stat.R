@@ -24,20 +24,40 @@ rsq <- function (x, y) {
 }
 
 
-#' Relative root mean square error
+#' Normalized root mean square error (nrmse)
 #'
 #' @param x variable x
 #' @param y variable y
+#' @param method method to calculate nrmse. Valid values are:
+#' \itemize{
+#'     \item{sdobs: standard deviation of observations (x)}
+#'     \item{rangeobs: difference between maximum and minimum observations (x)}
+#'     \item{meanobs: average of observations (x)}
+#'     \item{interquartileobs: the difference between 25th and 75th percentile (x)}
+#' }
 #'
-#' @return Relative root mean square error.
+#' @return Normalized root mean square error.
 #' @export
 #'
 #' @examples
-#' rrmse(runif(10), runif(10))
-rrmse <- function(x, y) {
+#' nrmse(runif(10), runif(10))
+nrmse <- function(x, y, method = c("rangeobs", "sdobs", "meanobs", "interquartileobs")) {
+    method <- match.arg(method)
     .check_numeric_vector(x)
     .check_numeric_vector(y)
-    Metrics::rmse(x, y) / mean(x)
+    value <- NULL
+    if (method == "sdobs") {
+        value <- Metrics::rmse(x, y) / stats::sd(x)
+    } else if (method == "rangeobs") {
+        value <- Metrics::rmse(x, y) / diff(range(x))
+    } else if (method == "meanobs") {
+        value <- Metrics::rmse(x, y) / mean(x)
+    } else if (method == "interquartileobs") {
+        value <- Metrics::rmse(x, y) / as.numeric(diff(stats::quantile(x, c(0.25, 0.75))))
+    } else {
+        stop("Method ", method, " is not implemented.")
+    }
+    return (value)
 }
 
 #' Summarise a model with statistics indicators
@@ -46,7 +66,11 @@ rrmse <- function(x, y) {
 #' @param x x variable name
 #' @param y y variable name
 #' @param digits integer indicating the number of decimal places (round) or significant digits (signif) to be used.
-#' @param direction The wide (default) or long format for the output
+#' @param direction the wide (default) or long format for the output
+#' @param ... other arguments passing to functions. Supporting arguments
+#' \itemize{
+#'     \item{nrmse_method: Method for nrmse}
+#' }
 #'
 #' @return A data frame with statistics indicators in columns including:
 #' \itemize{
@@ -56,7 +80,7 @@ rrmse <- function(x, y) {
 #'     \item{bias: Average amount by which actual is greater than predicted}
 #'     \item{mse: Average squared difference}
 #'     \item{rmse: Root mean squared error}
-#'     \item{rrmse: Relative root mean squared error}
+#'     \item{nrmse: Normalized root mean squared error}
 #' }
 #' @export
 #'
@@ -67,13 +91,25 @@ rrmse <- function(x, y) {
 #' data %>% model_summarise(digits = 2)
 #' # Export as long format
 #' data %>% model_summarise(digits = 2, direction = "long")
-model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c("wide", "long")) {
+model_summarise <- function(data, x = "x", y = "y",
+                            digits = NULL,
+                            direction = c("wide", "long"),
+                            ...) {
     direction <- match.arg(direction)
     if (!(purrr::is_character(x) && length(x) == 1)) {
         stop("x variable should be character with length 1: ", x)
     }
     if (!(purrr::is_character(y) && length(y) == 1)) {
         stop("y variable should be character with length 1: ", y)
+    }
+
+    # Check other arguments
+    other_args <- list(...)
+    other_args_names <- names(other_args)
+    if ("nrmse_method" %in% other_args_names) {
+        nrmse_method <- other_args[["nrmse_method"]]
+    } else {
+        nrmse_method <- "rangeobs"
     }
     res <- dplyr::summarise(data,
                      n = dplyr::n(),
@@ -82,7 +118,7 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
                      bias = Metrics::bias(.data[[x]], .data[[y]]),
                      mse = Metrics::mse(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
-                     rrmse = rrmse(.data[[x]], .data[[y]]),
+                     nrmse = nrmse(.data[[x]], .data[[y]], method = nrmse_method),
               .groups = "drop")
     if (!is.null(digits) && length(digits) == 1 && is.numeric(digits)) {
         res <- res %>%
@@ -91,11 +127,11 @@ model_summarise <- function(data, x = "x", y = "y", digits = NULL, direction = c
                    mse = round(.data$mse, digits),
                    bias = round(.data$bias, digits),
                    rmse = round(.data$rmse, digits),
-                   rrmse = round(.data$rrmse, digits))
+                   nrmse = round(.data$nrmse, digits))
     }
     if (direction == "long") {
         res <- res %>%
-            tidyr::pivot_longer(cols = c("n", "r", "r2", "bias", "mse", "rmse", "rrmse"),
+            tidyr::pivot_longer(cols = c("n", "r", "r2", "bias", "mse", "rmse", "nrmse"),
                                 names_to = "indicator")
     }
     res

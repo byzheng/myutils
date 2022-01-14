@@ -6,13 +6,20 @@ test_that("Statistics functions", {
     x <- c(1.3, 1.5, 3.2, 4.3, 5.3, 5.8)
     y <- c(0.7, 1.7, 2.6, 4.7, 5.3, 6.3)
 
+    # Test rsq
     expect_error(rsq("1", "a"))
     expect_equal(rsq(x, y), 0.967166, tolerance=1e-7)
-    expect_error(rrmse("1", "a"))
-    expect_equal(rrmse(x, y), 0.1238097, tolerance=1e-7)
 
+    # test nrmse
+    expect_error(nrmse("1", "a"))
+    expect_error(nrmse(x, y, method = "min"))
+    expect_equal(nrmse(x, y), 0.09813068, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "rangeobs"), 0.09813068, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "sdobs"), 0.2322647, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "meanobs"), 0.1238097, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "interquartileobs"), 0.1413082, tolerance=1e-7)
 
-
+    # Test model_summarise
     data <- read.csv(file = textConnection('x,y
 1,1.2655086631421
 2,2.37212389963679
@@ -25,20 +32,33 @@ test_that("Statistics functions", {
 9,9.62911404389888
 10,10.0617862704676'))
 
-    # Test model_summarise
     expect_error(model_summarise(res, digits = 2, direction = "dd"))
-    expect_value <- c(10, 0.99, 0.99, -0.55, 0.39, 0.63, 0.11)
-    res <- data %>%
-        model_summarise(digits = 2) %>%
+    expect_value <- c(n = 10, r = 0.99, r2 = 0.99,
+                      bias = -0.55,
+                      mse = 0.39,
+                      rmse = 0.63,
+                      nrmse = 0.07)
+
+    res0 <- data %>%
+        model_summarise(digits = 2)
+    expect_equal(names(res0), names(expect_value))
+    res <- res0 %>%
         as.vector() %>%
         as.numeric()
-    expect_equal(res, expect_value)
+    expect_equivalent(res, expect_value)
 
     res <- data %>%
         model_summarise(digits = 2, direction = "long") %>%
         magrittr::use_series("value") %>%
         as.vector() %>%
         as.numeric()
-    expect_equal(res, expect_value)
+    expect_equivalent(res, expect_value)
+
+    res <- data %>%
+        model_summarise(digits = 2, direction = "long", nrmse_method = "rangeobs") %>%
+        magrittr::use_series("value") %>%
+        as.vector() %>%
+        as.numeric()
+    expect_equivalent(res, expect_value)
 
 })
