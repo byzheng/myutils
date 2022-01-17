@@ -30,10 +30,10 @@ rsq <- function (x, y) {
 #' @param y variable y
 #' @param method method to calculate nrmse. Valid values are:
 #' \itemize{
-#'     \item{sdobs: standard deviation of observations (x)}
-#'     \item{rangeobs: difference between maximum and minimum observations (x)}
-#'     \item{meanobs: average of observations (x)}
-#'     \item{interquartileobs: the difference between 25th and 75th percentile (x)}
+#'     \item{sd: standard deviation of observations (x)}
+#'     \item{maxmin: difference between maximum and minimum observations (x)}
+#'     \item{mea: average of observations (x)}
+#'     \item{iq: the difference between 25th and 75th percentile (x)}
 #' }
 #'
 #' @return Normalized root mean square error.
@@ -41,18 +41,19 @@ rsq <- function (x, y) {
 #'
 #' @examples
 #' nrmse(runif(10), runif(10))
-nrmse <- function(x, y, method = c("rangeobs", "sdobs", "meanobs", "interquartileobs")) {
+nrmse <- function(x, y,
+                  method = c("maxmin", "sd", "mean", "iq")) {
     method <- match.arg(method)
     .check_numeric_vector(x)
     .check_numeric_vector(y)
     value <- NULL
-    if (method == "sdobs") {
+    if (method == "sd") {
         value <- Metrics::rmse(x, y) / stats::sd(x)
-    } else if (method == "rangeobs") {
+    } else if (method == "maxmin") {
         value <- Metrics::rmse(x, y) / diff(range(x))
-    } else if (method == "meanobs") {
+    } else if (method == "mean") {
         value <- Metrics::rmse(x, y) / mean(x)
-    } else if (method == "interquartileobs") {
+    } else if (method == "iq") {
         value <- Metrics::rmse(x, y) / as.numeric(diff(stats::quantile(x, c(0.25, 0.75))))
     } else {
         stop("Method ", method, " is not implemented.")
@@ -109,7 +110,7 @@ model_summarise <- function(data, x = "x", y = "y",
     if ("nrmse_method" %in% other_args_names) {
         nrmse_method <- other_args[["nrmse_method"]]
     } else {
-        nrmse_method <- "rangeobs"
+        nrmse_method <- "mean"
     }
     res <- dplyr::summarise(data,
                      n = dplyr::n(),

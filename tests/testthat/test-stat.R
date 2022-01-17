@@ -14,10 +14,10 @@ test_that("Statistics functions", {
     expect_error(nrmse("1", "a"))
     expect_error(nrmse(x, y, method = "min"))
     expect_equal(nrmse(x, y), 0.09813068, tolerance=1e-7)
-    expect_equal(nrmse(x, y, method = "rangeobs"), 0.09813068, tolerance=1e-7)
-    expect_equal(nrmse(x, y, method = "sdobs"), 0.2322647, tolerance=1e-7)
-    expect_equal(nrmse(x, y, method = "meanobs"), 0.1238097, tolerance=1e-7)
-    expect_equal(nrmse(x, y, method = "interquartileobs"), 0.1413082, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "maxmin"), 0.09813068, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "sd"), 0.2322647, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "mean"), 0.1238097, tolerance=1e-7)
+    expect_equal(nrmse(x, y, method = "iq"), 0.1413082, tolerance=1e-7)
 
     # Test model_summarise
     data <- read.csv(file = textConnection('x,y
@@ -37,7 +37,7 @@ test_that("Statistics functions", {
                       bias = -0.55,
                       mse = 0.39,
                       rmse = 0.63,
-                      nrmse = 0.07)
+                      nrmse = 0.11)
 
     res0 <- data %>%
         model_summarise(digits = 2)
@@ -55,7 +55,7 @@ test_that("Statistics functions", {
     expect_equivalent(res, expect_value)
 
     res <- data %>%
-        model_summarise(digits = 2, direction = "long", nrmse_method = "rangeobs") %>%
+        model_summarise(digits = 2, direction = "long", nrmse_method = "mean") %>%
         magrittr::use_series("value") %>%
         as.vector() %>%
         as.numeric()

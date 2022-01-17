@@ -4,7 +4,7 @@
 \alias{nrmse}
 \title{Normalized root mean square error (nrmse)}
 \usage{
-nrmse(x, y, method = c("rangeobs", "sdobs", "meanobs", "interquartileobs"))
+nrmse(x, y, method = c("maxmin", "sd", "mean", "iq"))
 }
 \arguments{
 \item{x}{variable x}
@@ -13,10 +13,10 @@ nrmse(x, y, method = c("rangeobs", "sdobs", "meanobs", "interquartileobs"))
 
 \item{method}{method to calculate nrmse. Valid values are:
 \itemize{
-    \item{sdobs: standard deviation of observations (x)}
-    \item{rangeobs: difference between maximum and minimum observations (x)}
-    \item{meanobs: average of observations (x)}
-    \item{interquartileobs: the difference between 25th and 75th percentile (x)}
+    \item{sd: standard deviation of observations (x)}
+    \item{maxmin: difference between maximum and minimum observations (x)}
+    \item{mea: average of observations (x)}
+    \item{iq: the difference between 25th and 75th percentile (x)}
 }}
 }
 \value{
