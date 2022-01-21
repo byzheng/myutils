@@ -7,6 +7,20 @@
     }
 }
 
+
+#'  Slope of linear regression
+#'
+#' @param x a numeric vector for x
+#' @param y a numeric vector for y
+#'
+#' @return Slope of linear regression
+#' @export
+#'
+#' @examples
+#' slope(runif(10), runif(10))
+slope <- function(x, y) {
+    stats::cor(x, y) *(stats::sd(y)/stats::sd(x))
+}
 #' Squared coefficient of correlation (R2)
 #'
 #' @param x variable x

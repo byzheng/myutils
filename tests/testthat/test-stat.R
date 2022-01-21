@@ -6,6 +6,7 @@ test_that("Statistics functions", {
     x <- c(1.3, 1.5, 3.2, 4.3, 5.3, 5.8)
     y <- c(0.7, 1.7, 2.6, 4.7, 5.3, 6.3)
 
+    expect_equal(slope(x, y), 1.142567, tolerance=1e-6)
     # Test rsq
     expect_error(rsq("1", "a"))
     expect_equal(rsq(x, y), 0.967166, tolerance=1e-7)
