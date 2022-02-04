@@ -1,29 +1,31 @@
-#' # * Author:    Bangyou Zheng (Bangyou.Zheng@csiro.au)
-#' # * Created:   11:37 AM Wednesday, 10 April 2013
-#' # * Copyright: AS IS
-#' # *
+# Function related with data time
+
+#' Convert day of year (doy) to date in month and day format
 #'
+#' @details
+#' No leap year is considered
 #'
-#' # Function related with data time
+#' @param doy a vertor of day of year
+#' @param format the date format
+#' @export
+#' @return
+#' Date in month and day format in character format
+#' @example
+#' doy2date(seq(1, 10))
+doy2date <- function(doy, format = '%d-%b')
+{
+    format(as.Date(doy, origin = '2010-12-31'), format = format)
+}
+
+#' First day (day of year) of month
 #'
-#' #' Convert doy to date
-#' #'
-#' #' @param doy a vertor of day of year
-#' #' @param format the date format
-#' #' @export
-#' myDoy2Date <- function(doy, format = '%d-%b')
-#' {
-#'     format(as.Date(doy, origin = '2010-12-31'), format = format)
-#' }
-#'
-#' #' Return the first day of month
-#' #'
-#' #' @export
-#' myFirstDayOfMonth <- function()
-#' {
-#'     c(1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
-#' }
-#'
+#' @return a numeric vector of first day of month (day of year)
+#' @export
+month_first_day <- function()
+{
+    c(1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
+}
+
 #' #' Convert date to DOY
 #' #' @param date The date like 1-May
 #' #' @export
@@ -31,4 +33,4 @@
 #' {
 #'     as.numeric(as.Date(paste(date, '-2011', sep = ''), format = '%d-%b-%Y')) -
 #'         as.numeric(as.Date('2010-12-31'))
-#' }
+#'}
