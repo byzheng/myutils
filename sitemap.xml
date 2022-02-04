@@ -16,10 +16,16 @@
     <loc>/index.html</loc>
   </url>
   <url>
+    <loc>/reference/doy2date.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
   </url>
   <url>
     <loc>/reference/model_summarise.html</loc>
+  </url>
+  <url>
+    <loc>/reference/month_first_day.html</loc>
   </url>
   <url>
     <loc>/reference/nrmse.html</loc>
