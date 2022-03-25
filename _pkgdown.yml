@@ -1,0 +1,23 @@
+reference:
+- title: "Statistics"
+  desc: "Functions related with statistics."
+- contents:
+  - "nrmse"
+  - "rsq"
+  - "slope"
+  - "model_summarise"
+- title: "Date and time"
+  desc: "Functions for date and time."
+- contents:
+  - "month_first_day"
+  - "doy2date"
+- title: "Parallel"
+  desc: "Functions for parallel computing."
+- contents:
+  - "run_parallel"
+- title: "Others"
+  desc: "Others functions."
+- contents:
+  - "reexports"
+
+
