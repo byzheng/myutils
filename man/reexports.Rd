@@ -4,6 +4,8 @@
 \name{reexports}
 \alias{reexports}
 \alias{rmse}
+\alias{bias}
+\alias{mse}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -11,6 +13,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{Metrics}{\code{\link[Metrics]{rmse}}}
+  \item{Metrics}{\code{\link[Metrics]{bias}}, \code{\link[Metrics]{mse}}, \code{\link[Metrics]{rmse}}}
 }}
 

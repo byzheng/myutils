@@ -10,7 +10,7 @@
 #' @export
 #' @return
 #' Date in month and day format in character format
-#' @example
+#' @examples
 #' doy2date(seq(1, 10))
 doy2date <- function(doy, format = '%d-%b')
 {

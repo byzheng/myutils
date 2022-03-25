@@ -20,3 +20,6 @@ Convert day of year (doy) to date in month and day format
 \details{
 No leap year is considered
 }
+\examples{
+doy2date(seq(1, 10))
+}

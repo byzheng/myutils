@@ -1,7 +1,7 @@
 Package: myutils
 Type: Package
 Title: My utility functions for R
-Version: 0.1.0
+Version: 0.1.1
 Maintainer: Bangyou Zheng <bangyou.zheng@csiro.au>
 Authors@R: person("Bangyou", "Zheng", 
                email = "bangyou.zheng@csiro.au", 
