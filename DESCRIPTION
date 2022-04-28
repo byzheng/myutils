@@ -27,7 +27,9 @@ Imports:
     rapsimng (>= 0.3.0),
     expDB (>= 0.1.0),
     rproject,
-    htcondor
+    htcondor,
+    rnaturalearth,
+    rnaturalearthdata
 Remotes: byzheng/rproject,
     byzheng/htcondor
 RoxygenNote: 7.1.2
