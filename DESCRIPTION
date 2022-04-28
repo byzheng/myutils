@@ -23,7 +23,7 @@ Imports:
     rlang,
     purrr,
     Metrics,
-    weaana (>= 0.1.1),
+    weaana (>= 0.1.2),
     rapsimng (>= 0.3.0),
     expDB (>= 0.1.0),
     rproject,
