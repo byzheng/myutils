@@ -31,7 +31,8 @@ Imports:
     rnaturalearth,
     rnaturalearthdata
 Remotes: byzheng/rproject,
-    byzheng/htcondor
+    byzheng/htcondor,
+    byzheng/weaana
 RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 3.0.0),
