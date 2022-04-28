@@ -10,6 +10,8 @@ model_summarise(
   y = "y",
   digits = NULL,
   direction = c("wide", "long"),
+  extra = FALSE,
+  .groups = "drop",
   ...
 )
 }
@@ -23,6 +25,10 @@ model_summarise(
 \item{digits}{integer indicating the number of decimal places (round) or significant digits (signif) to be used.}
 
 \item{direction}{the wide (default) or long format for the output}
+
+\item{extra}{summarise extra variables. \code{FALSE} in default.}
+
+\item{.groups}{Grouping structure passing to \code{summarise} function. "drop" in default.}
 
 \item{...}{other arguments passing to functions. Supporting arguments
 \itemize{
@@ -39,6 +45,7 @@ A data frame with statistics indicators in columns including:
     \item{mse: Average squared difference}
     \item{rmse: Root mean squared error}
     \item{nrmse: Normalized root mean squared error}
+    \item{error7day: Percentabe of errors less than 7 days if \code{extra} is \code{TRUE}}
 }
 }
 \description{

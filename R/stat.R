@@ -82,6 +82,8 @@ nrmse <- function(x, y,
 #' @param y y variable name
 #' @param digits integer indicating the number of decimal places (round) or significant digits (signif) to be used.
 #' @param direction the wide (default) or long format for the output
+#' @param extra summarise extra variables. \code{FALSE} in default.
+#' @param .groups Grouping structure passing to \code{summarise} function. "drop" in default.
 #' @param ... other arguments passing to functions. Supporting arguments
 #' \itemize{
 #'     \item{nrmse_method: Method for nrmse}
@@ -96,6 +98,7 @@ nrmse <- function(x, y,
 #'     \item{mse: Average squared difference}
 #'     \item{rmse: Root mean squared error}
 #'     \item{nrmse: Normalized root mean squared error}
+#'     \item{error7day: Percentabe of errors less than 7 days if \code{extra} is \code{TRUE}}
 #' }
 #' @export
 #'
@@ -109,6 +112,8 @@ nrmse <- function(x, y,
 model_summarise <- function(data, x = "x", y = "y",
                             digits = NULL,
                             direction = c("wide", "long"),
+                            extra = FALSE,
+                            .groups = "drop",
                             ...) {
     direction <- match.arg(direction)
     if (!(purrr::is_character(x) && length(x) == 1)) {
@@ -126,6 +131,12 @@ model_summarise <- function(data, x = "x", y = "y",
     } else {
         nrmse_method <- "mean"
     }
+    # Summarise extra variable
+    if (extra) {
+        res_extra <- dplyr::summarise(data,
+                                  error7day = sum(abs(.data[[x]] - .data[[y]]) <= 7) / dplyr::n(),
+                                  .groups = .groups)
+    }
     res <- dplyr::summarise(data,
                      n = dplyr::n(),
                      r = stats::cor(.data[[x]], .data[[y]]),
@@ -134,7 +145,16 @@ model_summarise <- function(data, x = "x", y = "y",
                      mse = Metrics::mse(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
                      nrmse = nrmse(.data[[x]], .data[[y]], method = nrmse_method),
-              .groups = "drop")
+              .groups = .groups)
+    if (extra) {
+        if (dplyr::is_grouped_df(data)) {
+            res <- res %>%
+                dplyr::left_join(res_extra, by = dplyr::group_vars(data))
+        } else {
+            res <- res %>%
+                dplyr::bind_cols(res_extra)
+        }
+    }
     if (!is.null(digits) && length(digits) == 1 && is.numeric(digits)) {
         res <- res %>%
             dplyr::mutate(r2 = round(.data$r2, digits),
@@ -143,10 +163,18 @@ model_summarise <- function(data, x = "x", y = "y",
                    bias = round(.data$bias, digits),
                    rmse = round(.data$rmse, digits),
                    nrmse = round(.data$nrmse, digits))
+        if (extra) {
+            res <- res %>%
+                dplyr::mutate(error7day = round(.data$error7day, digits))
+        }
     }
     if (direction == "long") {
+        cols <- c("n", "r", "r2", "bias", "mse", "rmse", "nrmse")
+        if (extra) {
+            cols <- c(cols, "error7day")
+        }
         res <- res %>%
-            tidyr::pivot_longer(cols = c("n", "r", "r2", "bias", "mse", "rmse", "nrmse"),
+            tidyr::pivot_longer(cols = cols,
                                 names_to = "indicator")
     }
     res
