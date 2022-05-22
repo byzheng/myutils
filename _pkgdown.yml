@@ -15,6 +15,12 @@ reference:
   desc: "Functions for parallel computing."
 - contents:
   - "run_parallel"
+- title: "Pairwise"
+  desc: "Functions for pairwise calculation."
+- contents:
+  - "pairwise"
+  - "pairwise_diff"
+
 - title: "Others"
   desc: "Others functions."
 - contents:
