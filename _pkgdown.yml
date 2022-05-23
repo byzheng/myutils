@@ -20,6 +20,10 @@ reference:
 - contents:
   - "pairwise"
   - "pairwise_diff"
+- title: "Bioinformatics"
+  desc: "Functions for bioinformatics."
+- contents:
+  - "crop_chromosome"
 
 - title: "Others"
   desc: "Others functions."

@@ -27,8 +27,8 @@ crop_chromosome <- function(crops, type = c("list", "data.frame")) {
     }
 
     if ("canola" %in% crops) {
-        canola_chrom <- c(paste0("chrA", seq(1, 10)),
-                          paste0("chrC", seq(1, 9)))
+        canola_chrom <- c(paste0("chrA", sprintf("%02d", seq(1, 10))),
+                          paste0("chrC", sprintf("%02d", seq(1, 9))))
         chroms[["canola"]] <- canola_chrom
     }
     if (type == "list") {
