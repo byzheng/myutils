@@ -10,6 +10,7 @@
 #' @importFrom rproject project_fun
 #' @importFrom tidyverse tidyverse_conflicts
 #' @importFrom weaana readWeatherRecords
+#' @importFrom rtiddlywiki tiddler_document
 #' @importFrom here here
 NULL
 

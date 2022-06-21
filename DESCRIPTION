@@ -26,6 +26,7 @@ Imports:
     weaana (>= 0.2.0),
     rapsimng (>= 0.3.0),
     expDB (>= 0.1.0),
+    rtiddlywiki,
     rproject,
     htcondor,
     here,
