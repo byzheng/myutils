@@ -31,7 +31,9 @@ Imports:
     htcondor,
     here,
     rnaturalearth,
-    rnaturalearthdata
+    rnaturalearthdata,
+    fst,
+    RMySQL
 Remotes: byzheng/rproject,
     byzheng/htcondor,
     byzheng/weaana,
