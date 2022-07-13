@@ -14,6 +14,7 @@
 #' @importFrom here here
 #' @importFrom fst read_fst
 #' @importFrom RMySQL dbConnect
+#' @importFrom RSQLite dbConnect
 NULL
 
 

@@ -24,7 +24,7 @@ Imports:
     purrr,
     Metrics,
     weaana (>= 0.2.0),
-    rapsimng (>= 0.3.0),
+    rapsimng (>= 0.4.0),
     expDB (>= 0.1.0),
     rtiddlywiki,
     rproject,
@@ -33,7 +33,8 @@ Imports:
     rnaturalearth,
     rnaturalearthdata,
     fst,
-    RMySQL
+    RMySQL,
+    RSQLite
 Remotes: byzheng/rproject,
     byzheng/htcondor,
     byzheng/weaana,
