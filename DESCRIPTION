@@ -38,7 +38,8 @@ Imports:
 Remotes: byzheng/rproject,
     byzheng/htcondor,
     byzheng/weaana,
-    byzheng/rtiddlywiki
+    byzheng/rtiddlywiki,
+    byzheng/rapsimng
 RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 3.0.0),
