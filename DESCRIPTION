@@ -34,12 +34,14 @@ Imports:
     rnaturalearthdata,
     fst,
     RMySQL,
-    RSQLite
+    RSQLite,
+    BWGS
 Remotes: byzheng/rproject,
     byzheng/htcondor,
     byzheng/weaana,
     byzheng/rtiddlywiki,
-    byzheng/rapsimng
+    byzheng/rapsimng,
+    byzheng/BWGS
 RoxygenNote: 7.1.2
 Suggests: 
     testthat (>= 3.0.0),

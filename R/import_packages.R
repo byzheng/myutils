@@ -15,6 +15,7 @@
 #' @importFrom fst read_fst
 #' @importFrom RMySQL dbConnect
 #' @importFrom RSQLite dbConnect
+#' @importFrom BWGS bwgs.predict
 NULL
 
 
