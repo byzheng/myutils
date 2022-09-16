@@ -11,6 +11,7 @@ reference:
 - contents:
   - "month_first_day"
   - "doy2date"
+  - "date2doy"
 - title: "Parallel"
   desc: "Functions for parallel computing."
 - contents:

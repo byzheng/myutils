@@ -26,11 +26,11 @@ month_first_day <- function()
     c(1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
 }
 
-#' #' Convert date to DOY
-#' #' @param date The date like 1-May
-#' #' @export
-#' myDate2Doy <- function(date)
-#' {
-#'     as.numeric(as.Date(paste(date, '-2011', sep = ''), format = '%d-%b-%Y')) -
-#'         as.numeric(as.Date('2010-12-31'))
-#'}
+#' Convert date to DOY
+#' @param date The date like 1-May
+#' @export
+date2doy <- function(date)
+{
+    as.numeric(as.Date(paste(date, '-2011', sep = ''), format = '%d-%b-%Y')) -
+        as.numeric(as.Date('2010-12-31'))
+}
