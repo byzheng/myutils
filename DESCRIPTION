@@ -24,7 +24,7 @@ Imports:
     purrr,
     Metrics,
     weaana (>= 0.2.0),
-    rapsimng (>= 0.4.0),
+    rapsimng (>= 0.4.2),
     expDB (>= 0.1.0),
     rtiddlywiki,
     rproject,
