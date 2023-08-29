@@ -17,6 +17,8 @@ Imports:
     parallel,
     snowfall,
     tidyverse,
+    oz,
+    ggplot2,
     tidyr,
     stats,
     magrittr,
@@ -42,7 +44,7 @@ Remotes: byzheng/rproject,
     byzheng/rtiddlywiki,
     byzheng/rapsimng,
     byzheng/BWGS
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0),
     dplyr
