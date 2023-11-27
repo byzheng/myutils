@@ -18,7 +18,6 @@ Imports:
     snowfall,
     tidyverse,
     oz,
-    ggplot2,
     tidyr,
     stats,
     magrittr,
