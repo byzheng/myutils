@@ -39,11 +39,6 @@ run_parallel <- function(x, fun, cpus = parallel::detectCores() - 1, ...) {
             fun(idx, ...)
         }
         r <- NULL
-    } else if (taskqueue::is_db_connect()) {
-        # in case of task queue server can be connected
-        project_name <- stringi::stri_rand_strings(1, length = 10)
-        taskqueue::project_add(project_name)
-        taskqueue::project_resource_add()
     } else {
         # In other case for local computer
         snowfall::sfInit(cpus = cpus,
