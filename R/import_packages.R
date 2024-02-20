@@ -13,7 +13,6 @@
 #' @importFrom rtiddlywiki tiddler_document
 #' @importFrom here here
 #' @importFrom fst read_fst
-#' @importFrom RMySQL dbConnect
 #' @importFrom RSQLite dbConnect
 #' @importFrom BWGS bwgs.predict
 NULL
