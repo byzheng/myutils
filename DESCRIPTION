@@ -12,37 +12,34 @@ URL: https://myutils.bangyou.me/,
     https://github.com/byzheng/myutils
 BugReports: https://github.com/byzheng/myutils/issues
 Encoding: UTF-8
-Depends: snow
 Imports:
-    parallel,
-    snowfall,
-    tidyverse,
-    oz,
-    tidyr,
-    stats,
+    ggplot2,
     magrittr,
     rlang,
+    oz,
+    utils,
+    stats,
+    dplyr,
+    tidyr,
     purrr,
     Metrics,
+    parallel,
+    snow,
+    snowfall,
     weaana (>= 0.2.0),
     rapsimng (>= 0.4.2),
     expDB (>= 0.1.0),
+    taskqueue,
     rtiddlywiki,
     rproject,
-    htcondor,
-    here,
-    rnaturalearth,
-    rnaturalearthdata,
-    fst,
-    RSQLite,
     BWGS
 Remotes: byzheng/rproject,
     byzheng/htcondor,
     byzheng/weaana,
     byzheng/rtiddlywiki,
     byzheng/rapsimng,
-    byzheng/BWGS
+    byzheng/BWGS,
+    byzheng/taskqueue
 RoxygenNote: 7.2.3
 Suggests: 
-    testthat (>= 3.0.0),
-    dplyr
+    testthat (>= 3.0.0)
