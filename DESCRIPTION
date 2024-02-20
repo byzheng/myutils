@@ -34,7 +34,6 @@ Imports:
     rnaturalearth,
     rnaturalearthdata,
     fst,
-    RMySQL,
     RSQLite,
     BWGS
 Remotes: byzheng/rproject,
