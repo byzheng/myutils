@@ -9,5 +9,6 @@
 #' @importFrom weaana readWeatherRecords
 #' @importFrom rtiddlywiki tiddler_document
 #' @importFrom BWGS bwgs.predict
+#' @importFrom taskqueue db_connect
 NULL
 
