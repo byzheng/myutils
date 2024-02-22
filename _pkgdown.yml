@@ -1,46 +1,42 @@
+url: https://myutils.bangyou.me/
 template:
   includes:
     in_header: |
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4HPNYGL5FT"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-4HPNYGL5FT"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-          gtag('config', 'G-4HPNYGL5FT');
-        </script>
+        gtag('config', 'G-4HPNYGL5FT');
+      </script>
 reference:
-- title: "Statistics"
-  desc: "Functions related with statistics."
+- title: Statistics
+  desc: Functions related with statistics.
 - contents:
-  - "nrmse"
-  - "rsq"
-  - "slope"
-  - "model_summarise"
-- title: "Date and time"
-  desc: "Functions for date and time."
+  - nrmse
+  - rsq
+  - slope
+  - model_summarise
+- title: Date and time
+  desc: Functions for date and time.
 - contents:
-  - "month_first_day"
-  - "doy2date"
-  - "date2doy"
-- title: "Parallel"
-  desc: "Functions for parallel computing."
+  - month_first_day
+  - doy2date
+  - date2doy
+- title: Parallel
+  desc: Functions for parallel computing.
+- contents: run_parallel
+- title: Pairwise
+  desc: Functions for pairwise calculation.
 - contents:
-  - "run_parallel"
-- title: "Pairwise"
-  desc: "Functions for pairwise calculation."
-- contents:
-  - "pairwise"
-  - "pairwise_diff"
-- title: "Bioinformatics"
-  desc: "Functions for bioinformatics."
-- contents:
-  - "crop_chromosome"
-
-- title: "Others"
-  desc: "Others functions."
-- contents:
-  - "reexports"
-
+  - pairwise
+  - pairwise_diff
+- title: Bioinformatics
+  desc: Functions for bioinformatics.
+- contents: crop_chromosome
+- title: Others
+  desc: Others functions.
+- contents: reexports
 
