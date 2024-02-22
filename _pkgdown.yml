@@ -33,9 +33,16 @@ reference:
 - contents:
   - pairwise
   - pairwise_diff
+- title: plots
+  desc: Functions for plots.
+- contents:
+  - geom_oz
+  - oz_lines
 - title: Bioinformatics
   desc: Functions for bioinformatics.
-- contents: crop_chromosome
+- contents:
+  - crop_chromosome
+  - install_packages
 - title: Others
   desc: Others functions.
 - contents: reexports
