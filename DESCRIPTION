@@ -26,20 +26,7 @@ Imports:
     parallel,
     snow,
     snowfall,
-    weaana (>= 0.2.0),
-    rapsimng (>= 0.4.2),
-    expDB (>= 0.1.0),
-    taskqueue,
-    rtiddlywiki,
-    rproject,
-    BWGS
-Remotes: byzheng/rproject,
-    byzheng/htcondor,
-    byzheng/weaana,
-    byzheng/rtiddlywiki,
-    byzheng/rapsimng,
-    byzheng/BWGS,
-    byzheng/taskqueue
+    remotes
 RoxygenNote: 7.2.3
 Suggests: 
     testthat (>= 3.0.0)
