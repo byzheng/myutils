@@ -17,7 +17,7 @@ install_packages <- function() {
               "byzheng/BWGS", "byzheng/taskqueue")
 
     for (i in seq(along = pkgs)) {
-        if (.Platform$OS.type == "linux") {
+        if (.Platform$OS.type == "unix") {
             dps <- pak::pkg_deps(pkgs[i])
             for (j in seq(along = dps[[1]])) {
                 pak::pkg_install(dps$package[j], upgrade = TRUE, ask = FALSE)
