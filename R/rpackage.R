@@ -6,7 +6,7 @@
 install_packages <- function() {
 
     # Update existing packages
-    if (!require("pak")) {
+    if (!require("pak", quietly = TRUE, warn.conflicts = FALSE)) {
         utils::install.packages("pak")
     }
     # CRAN packages
