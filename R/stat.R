@@ -98,6 +98,7 @@ nrmse <- function(x, y,
 #'     \item{mse: Average squared difference}
 #'     \item{rmse: Root mean squared error}
 #'     \item{nrmse: Normalized root mean squared error}
+#'     \item{d: Willmott degree of agreement}
 #'     \item{error7day: Percentabe of errors less than 7 days if \code{extra} is \code{TRUE}}
 #' }
 #' @export
@@ -145,6 +146,8 @@ model_summarise <- function(data, x = "x", y = "y",
                      mse = Metrics::mse(.data[[x]], .data[[y]]),
                      rmse = Metrics::rmse(.data[[x]], .data[[y]]),
                      nrmse = nrmse(.data[[x]], .data[[y]], method = nrmse_method),
+                     d = 1 - sum((.data[[x]] - .data[[y]]) * (.data[[x]] - .data[[y]])) /
+                         sum((abs(.data[[x]] - mean(.data[[x]])) + abs(.data[[y]] - mean(.data[[x]]))) ^ 2),
               .groups = .groups)
     if (extra) {
         if (dplyr::is_grouped_df(data)) {
@@ -162,19 +165,20 @@ model_summarise <- function(data, x = "x", y = "y",
                    mse = round(.data$mse, digits),
                    bias = round(.data$bias, digits),
                    rmse = round(.data$rmse, digits),
-                   nrmse = round(.data$nrmse, digits))
+                   nrmse = round(.data$nrmse, digits),
+                   d = round(.data$d, digits))
         if (extra) {
             res <- res %>%
                 dplyr::mutate(error7day = round(.data$error7day, digits))
         }
     }
     if (direction == "long") {
-        cols <- c("n", "r", "r2", "bias", "mse", "rmse", "nrmse")
+        cols <- c("n", "r", "r2", "bias", "mse", "rmse", "nrmse", "d")
         if (extra) {
             cols <- c(cols, "error7day")
         }
         res <- res %>%
-            tidyr::pivot_longer(cols = cols,
+            tidyr::pivot_longer(cols = tidyselect::any_of(cols),
                                 names_to = "indicator")
     }
     res

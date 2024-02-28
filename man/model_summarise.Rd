@@ -45,6 +45,7 @@ A data frame with statistics indicators in columns including:
     \item{mse: Average squared difference}
     \item{rmse: Root mean squared error}
     \item{nrmse: Normalized root mean squared error}
+    \item{d: Willmott degree of agreement}
     \item{error7day: Percentabe of errors less than 7 days if \code{extra} is \code{TRUE}}
 }
 }

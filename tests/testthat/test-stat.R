@@ -38,7 +38,8 @@ test_that("Statistics functions", {
                       bias = -0.55,
                       mse = 0.39,
                       rmse = 0.63,
-                      nrmse = 0.11)
+                      nrmse = 0.11,
+                      d = 0.99)
 
     res0 <- data %>%
         model_summarise(digits = 2)
@@ -68,7 +69,8 @@ test_that("Statistics functions", {
                       bias = -0.55,
                       mse = 0.39,
                       rmse = 0.63,
-                      nrmse = 0.11, error7day = 1)
+                      nrmse = 0.11,
+                      d= 0.99, error7day = 1)
     res <- data %>%
         model_summarise(digits = 2, direction = "long", extra = TRUE) %>%
         magrittr::use_series("value") %>%
@@ -99,10 +101,11 @@ test_that("Statistics functions", {
         group_by(g) %>%
         model_summarise(digits = 2, direction = "wide", extra = TRUE)
     expect_equivalent(nrow(res), 2)
-    expect_equivalent(ncol(res), 9)
+    expect_equivalent(ncol(res), 10)
 
     res <- data %>%
         group_by(g) %>%
         model_summarise(digits = 2, direction = "wide", extra = TRUE, .groups = "keep")
     expect_equivalent(is_grouped_df(res), TRUE)
 })
+
