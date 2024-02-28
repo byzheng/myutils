@@ -5,7 +5,8 @@
 #' @export
 install_packages <- function() {
     # CRAN packages
-    pkgs <- c("oz", "tidyverse", "RMySQL", "remotes", "roxygen2", "arrow")
+    pkgs <- c("oz", "tidyverse", "RMySQL", "remotes", "roxygen2", "arrow",
+              "RColorBrewer")
     i <- 3
     for (i in seq(along = pkgs)) {
         utils::install.packages(pkgs[i])
