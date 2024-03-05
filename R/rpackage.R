@@ -10,11 +10,20 @@ install_packages <- function() {
         utils::install.packages("pak")
     }
     # CRAN packages
-    pkgs <- c("oz", "tidyverse", "RMySQL", "remotes", "roxygen2", "arrow",
+    pkgs <- c("oz",
+              "tidyverse",
+              "RMySQL",
+              "remotes",
+              "roxygen2",
+              "arrow",
               "RColorBrewer",
-              "byzheng/weaana", "byzheng/rproject",
-              "byzheng/rtiddlywiki", "byzheng/rapsimng",
-              "byzheng/BWGS", "byzheng/taskqueue")
+              "ggpcp",
+              "byzheng/weaana",
+              "byzheng/rproject",
+              "byzheng/rtiddlywiki",
+              "byzheng/rapsimng",
+              "byzheng/BWGS",
+              "byzheng/taskqueue")
 
     for (i in seq(along = pkgs)) {
         message("Install package: ", pkgs[i])
