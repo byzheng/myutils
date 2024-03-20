@@ -46,6 +46,6 @@ reference:
 - title: Others
   desc: Others functions.
 - contents:
- - reexports
- - use_petrichor
+  - reexports
+  - use_petrichor
 
