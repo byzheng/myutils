@@ -45,5 +45,7 @@ reference:
   - install_packages
 - title: Others
   desc: Others functions.
-- contents: reexports
+- contents:
+ - reexports
+ - use_petrichor
 
