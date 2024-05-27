@@ -20,6 +20,7 @@ install_packages <- function() {
               "ggpcp",
               "rorcid",
               "scholar",
+              "pinyin",
               "byzheng/weaana",
               "byzheng/rproject",
               "byzheng/rtiddlywiki",
