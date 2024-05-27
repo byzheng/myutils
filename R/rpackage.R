@@ -18,6 +18,8 @@ install_packages <- function() {
               "arrow",
               "RColorBrewer",
               "ggpcp",
+              "rorcid",
+              "scholar",
               "byzheng/weaana",
               "byzheng/rproject",
               "byzheng/rtiddlywiki",
