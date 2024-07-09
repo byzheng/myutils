@@ -28,7 +28,8 @@ Imports:
     snowfall,
     tidyselect,
     taskqueue,
-    pak
+    pak,
+    httr
 Remotes:
     byzheng/taskqueue
 RoxygenNote: 7.3.1
