@@ -18,7 +18,6 @@ asris_soil <- function(lon, lat, outfile, models) {
     response <- httr::content(soildata, "text")
 
     writeLines(response, outfile)
-    models <- "Result/win-x64/Models.exe"
     cmd <- paste0(models, " ", outfile, " --upgrade")
     system(cmd)
 }
