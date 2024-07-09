@@ -1,69 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://myutils.bangyou.me/404.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/index.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/crop_chromosome.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/date2doy.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/doy2date.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/geom_oz.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/install_packages.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/model_summarise.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/month_first_day.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/nrmse.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/oz_lines.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/pairwise.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/pairwise_diff.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/reexports.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/rsq.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/run_parallel.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/slope.html</loc>
-  </url>
-  <url>
-    <loc>https://myutils.bangyou.me/reference/use_petrichor.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://myutils.bangyou.me/404.html</loc></url>
+<url><loc>https://myutils.bangyou.me/CODE_OF_CONDUCT.html</loc></url>
+<url><loc>https://myutils.bangyou.me/LICENSE-text.html</loc></url>
+<url><loc>https://myutils.bangyou.me/authors.html</loc></url>
+<url><loc>https://myutils.bangyou.me/index.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/asris_soil.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/crop_chromosome.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/date2doy.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/doy2date.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/geom_oz.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/index.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/install_packages.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/model_summarise.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/month_first_day.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/nrmse.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/oz_lines.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/pairwise.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/pairwise_diff.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/reexports.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/rsq.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/run_parallel.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/silo_grid.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/slope.html</loc></url>
+<url><loc>https://myutils.bangyou.me/reference/use_petrichor.html</loc></url>
 </urlset>
+
