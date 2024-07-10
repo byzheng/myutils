@@ -15,6 +15,9 @@ asris_soil(lon, lat, outfile, models)
 
 \item{models}{path to models}
 }
+\value{
+No return values
+}
 \description{
 Download soil file from asris and convert to json which can be used in APSIM NG
 }

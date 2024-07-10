@@ -10,10 +10,8 @@
 #' @param email email address
 #' @param outfile output file
 #'
-#' @return
+#' @return No return values
 #' @export
-#'
-#' @examples
 silo_grid <- function(lon, lat, startDate, endDate, email, outfile) {
     url <- paste0('https://www.longpaddock.qld.gov.au/cgi-bin/silo/DataDrillDataset.php?lat=',
                   lat, '&lon=', lon, '&format=APSIM&start=',

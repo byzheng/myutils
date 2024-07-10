@@ -19,6 +19,9 @@ silo_grid(lon, lat, startDate, endDate, email, outfile)
 
 \item{outfile}{output file}
 }
+\value{
+No return values
+}
 \description{
 Get gridded data from SILO
 }

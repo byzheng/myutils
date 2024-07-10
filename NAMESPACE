@@ -2,6 +2,7 @@
 
 export(asris_soil)
 export(bias)
+export(chunk)
 export(crop_chromosome)
 export(date2doy)
 export(doy2date)

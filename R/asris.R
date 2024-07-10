@@ -6,10 +6,8 @@
 #' @param outfile output file
 #' @param models path to models
 #'
-#' @return
+#' @return No return values
 #' @export
-#'
-#' @examples
 asris_soil <- function(lon, lat, outfile, models) {
     servicePath = "https://www.asris.csiro.au/"
     soilURL = paste0(servicePath, 'ASRISApi/api/APSIM/getApsoil?longitude=', lon, '&latitude=', lat)
