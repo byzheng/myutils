@@ -17,6 +17,7 @@ install_packages <- function() {
               "roxygen2",
               "arrow",
               "RColorBrewer",
+              "assertr",
               "ggpcp",
               "rorcid",
               "scholar",
