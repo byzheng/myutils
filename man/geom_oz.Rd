@@ -4,7 +4,10 @@
 \alias{geom_oz}
 \title{Geometry of Australia coast and state lines}
 \usage{
-geom_oz()
+geom_oz(...)
+}
+\arguments{
+\item{...}{Other arguments to geom_path}
 }
 \value{
 a geom object
