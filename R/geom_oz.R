@@ -30,3 +30,17 @@ oz_lines <- function() {
 geom_oz <- function(...) {
     ggplot2::geom_path(ggplot2::aes_string(x = 'x', y = 'y', group = 'g'), data = oz_lines(), ...)
 }
+
+
+
+#' Theme for map
+#'
+#' @returns  theme object for ggplot2
+#' @export
+theme_map <- function() {
+    ggplot2::theme(axis.title = ggplot2::element_blank(),
+          axis.ticks = ggplot2::element_blank(),
+          axis.text = ggplot2::element_blank(),
+          panel.grid = ggplot2::element_blank(),
+          panel.border = ggplot2::element_blank())
+}
