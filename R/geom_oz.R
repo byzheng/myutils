@@ -24,6 +24,7 @@ oz_lines <- function() {
 
 #' Geometry of Australia coast and state lines
 #'
+#' @param color color of lines
 #' @param ... Other arguments to geom_path
 #' @return a geom object
 #' @export

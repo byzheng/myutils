@@ -4,9 +4,11 @@
 \alias{geom_oz}
 \title{Geometry of Australia coast and state lines}
 \usage{
-geom_oz(...)
+geom_oz(color = "gray", ...)
 }
 \arguments{
+\item{color}{color of lines}
+
 \item{...}{Other arguments to geom_path}
 }
 \value{
