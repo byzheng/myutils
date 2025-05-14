@@ -38,9 +38,15 @@ geom_oz <- function(...) {
 #' @returns  theme object for ggplot2
 #' @export
 theme_map <- function() {
-    ggplot2::theme(axis.title = ggplot2::element_blank(),
-          axis.ticks = ggplot2::element_blank(),
-          axis.text = ggplot2::element_blank(),
-          panel.grid = ggplot2::element_blank(),
-          panel.border = ggplot2::element_blank())
+    ggplot2::`%+replace%`(
+        ggplot2::theme_bw(),
+        ggplot2::theme(
+            axis.title   = ggplot2::element_blank(),
+            axis.ticks   = ggplot2::element_blank(),
+            axis.text    = ggplot2::element_blank(),
+            panel.grid   = ggplot2::element_blank(),
+            panel.border = ggplot2::element_blank(),
+            complete     = TRUE
+        )
+    )
 }
