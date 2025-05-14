@@ -27,8 +27,9 @@ oz_lines <- function() {
 #' @param ... Other arguments to geom_path
 #' @return a geom object
 #' @export
-geom_oz <- function(...) {
-    ggplot2::geom_path(ggplot2::aes_string(x = 'x', y = 'y', group = 'g'), data = oz_lines(), ...)
+geom_oz <- function(color = "gray", ...) {
+    ggplot2::geom_path(ggplot2::aes_string(x = 'x', y = 'y', group = 'g'),
+                       data = oz_lines(), color = color, ...)
 }
 
 
