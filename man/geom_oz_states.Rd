@@ -4,10 +4,12 @@
 \alias{geom_oz_states}
 \title{Geom label for Australian States}
 \usage{
-geom_oz_states(color = "gray")
+geom_oz_states(color = "gray", ACT = FALSE)
 }
 \arguments{
 \item{color}{color for text}
+
+\item{ACT}{Whether to include ACT (FALSE in default)}
 }
 \value{
 geom_text

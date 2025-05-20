@@ -56,10 +56,11 @@ theme_map <- function() {
 #' Geom label for Australian States
 #'
 #' @param color color for text
+#' @param ACT Whether to include ACT (FALSE in default)
 #'
 #' @returns geom_text
 #' @export
-geom_oz_states <- function(color = "gray") {
+geom_oz_states <- function(color = "gray", ACT = FALSE) {
     state_labels <- data.frame(
         state = c("Queensland", "New South Wales", "Victoria", "Western Australia",
                   "South Australia", "Tasmania", "Northern Territory", "Australian Capital Territory"),
@@ -67,7 +68,9 @@ geom_oz_states <- function(color = "gray") {
         lon = c(145, 147, 144.5, 123, 135, 147, 133, 149),
         lat = c(-21, -32, -37, -26, -30, -42, -20, -35)
     )
-
+    if (!ACT) {
+        state_labels <- state_labels[state_labels$code != "ACT",]
+    }
     ggplot2::geom_text(data = state_labels,
         ggplot2::aes_string(x = 'lon',
                           y = 'lat',
