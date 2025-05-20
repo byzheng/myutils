@@ -8,4 +8,11 @@ test_that("Test geom_oz", {
         p <- ggplot() +
             geom_oz(color = "red")
     })
+
+    expect_no_error({
+        p <- ggplot() +
+            geom_oz(color = "red") +
+            geom_oz_states(color = "blue")
+    })
+
 })
