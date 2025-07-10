@@ -26,6 +26,16 @@ month_first_day <- function()
     c(1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335)
 }
 
+
+#' First day of month
+#'
+#' @return a character vector of first day of month (day of year)
+#' @export
+month_first_day_label <- function()
+{
+    doy2date(month_first_day())
+}
+
 #' Convert date to DOY
 #' @param date The date like 1-May
 #' @export
