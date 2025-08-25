@@ -11,7 +11,6 @@ install_packages <- function() {
     # CRAN packages
     pkgs <- c("oz",
               "tidyverse",
-              "remotes",
               "roxygen2",
               "arrow",
               "RColorBrewer",
