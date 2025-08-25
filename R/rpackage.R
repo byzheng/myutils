@@ -1,3 +1,55 @@
+modules <- c("proj", "geos", "gdal", "sqlite",
+            "postgresql", "libxml2",
+            "cmake", "udunits")
+pkgs <- c("oz",
+            "tidyverse",
+            "roxygen2",
+            "arrow",
+            "RColorBrewer",
+            "assertr",
+            "ggpcp",
+            "sf",
+            "byzheng/weaana",
+            "byzheng/rproject",
+            "byzheng/rtiddlywiki",
+            "byzheng/rapsimng",
+            "byzheng/BWGS",
+            "byzheng/taskqueue", 
+            "byzheng/ragridata",
+            "byzheng/twproject")
+
+.load_modules <- function() {
+    if (.Platform$OS.type != "unix") {
+        return(invisible(NULL))
+    }
+    module_check <- suppressWarnings(system("command -v module", 
+            intern = TRUE, ignore.stderr = TRUE))
+    if (!nzchar(module_check)) {
+        return(invisible(NULL))
+    }
+    
+    for (i in seq(along = modules)) {
+        # Find all available versions for the module
+        avail_cmd <- paste("module avail", modules[i], "2>&1 | grep", modules[i])
+        avail_out <- suppressWarnings(system(avail_cmd, intern = TRUE))
+        if (length(avail_out) == 0) {
+            next
+        }
+        # Extract versions and pick the highest one
+        versions <- regmatches(avail_out, gregexpr(paste0(modules[i], "/[0-9.]+"), avail_out))
+        versions <- unlist(versions)
+        if (length(versions) == 0) {
+            next
+        }
+        # Sort versions and pick the highest
+        ver_nums <- sub(paste0(modules[i], "/"), "", versions)
+        highest <- versions[order(package_version(ver_nums), decreasing = TRUE)][1]
+        message("Loading module: ", highest)
+        cmd <- paste("module load", highest)
+        system(cmd)
+    }
+}
+
 #' Install packages for myself
 #'
 #' @return no return
@@ -8,22 +60,8 @@ install_packages <- function() {
     if (!base::require("pak", quietly = TRUE, warn.conflicts = FALSE)) {
         utils::install.packages("pak")
     }
+    .load_modules()
     # CRAN packages
-    pkgs <- c("oz",
-              "tidyverse",
-              "roxygen2",
-              "arrow",
-              "RColorBrewer",
-              "assertr",
-              "ggpcp",
-              "byzheng/weaana",
-              "byzheng/rproject",
-              "byzheng/rtiddlywiki",
-              "byzheng/rapsimng",
-              "byzheng/BWGS",
-              "byzheng/taskqueue", 
-              "byzheng/ragridata",
-              "byzheng/twproject")
     i <- 1
     for (i in seq(along = pkgs)) {
         message("Install package: ", pkgs[i])
