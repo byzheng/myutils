@@ -30,7 +30,11 @@ oz_lines <- function() {
 #' @export
 geom_oz <- function(color = "gray", ...) {
     ggplot2::geom_path(
-        ggplot2::aes(x = x, y = y, group = g),
+        ggplot2::aes(
+            x = !!rlang::sym("x"),
+            y = !!rlang::sym("y"), 
+            group = !!rlang::sym("g")
+        ),
         data = oz_lines(),
         color = color,
         ...
@@ -76,8 +80,8 @@ geom_oz_states <- function(color = "gray", ACT = FALSE) {
         state_labels <- state_labels[state_labels$code != "ACT",]
     }
     ggplot2::geom_text(data = state_labels,
-        ggplot2::aes(x = lon,
-                          y = lat,
-                          label = code),
+        ggplot2::aes(x = !!rlang::sym("lon"),
+                    y = !!rlang::sym("lat"),
+                    label = !!rlang::sym("code")),
         size = 4, color = color)
 }

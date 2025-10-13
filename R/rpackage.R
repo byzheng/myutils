@@ -52,7 +52,7 @@ pkgs <- c("oz",
         env_vars <- strsplit(env_out, "=", fixed = TRUE)
         for (kv in env_vars) {
             if (length(kv) != 2) next
-            do.call(Sys.setenv, setNames(list(kv[2]), kv[1]))
+            do.call(Sys.setenv, stats::setNames(list(kv[2]), kv[1]))
         }
     }
     tryCatch(system("bash -l -c 'module list'"), error = function(e) NULL)
