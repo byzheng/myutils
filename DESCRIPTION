@@ -26,14 +26,7 @@ Imports:
     parallel,
     snow,
     snowfall,
-    tidyselect,
-    taskqueue,
-    pak,
-    httr,
-    rapsimng
-Remotes:
-    byzheng/taskqueue,
-    byzheng/rapsimng
-RoxygenNote: 7.3.2
+    tidyselect
+RoxygenNote: 7.3.3
 Suggests: 
     testthat (>= 3.0.0)
