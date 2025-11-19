@@ -106,10 +106,10 @@ nrmse <- function(x, y,
 #' @examples
 #' library(dplyr)
 #' data <- data.frame(x = 1:10, y = 1:10 + runif(10))
-#' data %>% model_summarise()
-#' data %>% model_summarise(digits = 2)
+#' data |> model_summarise()
+#' data |> model_summarise(digits = 2)
 #' # Export as long format
-#' data %>% model_summarise(digits = 2, direction = "long")
+#' data |> model_summarise(digits = 2, direction = "long")
 model_summarise <- function(data, x = "x", y = "y",
                             digits = NULL,
                             direction = c("wide", "long"),
@@ -151,15 +151,15 @@ model_summarise <- function(data, x = "x", y = "y",
               .groups = .groups)
     if (extra) {
         if (dplyr::is_grouped_df(data)) {
-            res <- res %>%
+            res <- res |>
                 dplyr::left_join(res_extra, by = dplyr::group_vars(data))
         } else {
-            res <- res %>%
+            res <- res |>
                 dplyr::bind_cols(res_extra)
         }
     }
     if (!is.null(digits) && length(digits) == 1 && is.numeric(digits)) {
-        res <- res %>%
+        res <- res |>
             dplyr::mutate(r2 = round(.data$r2, digits),
                    r = round(.data$r, digits),
                    mse = round(.data$mse, digits),
@@ -168,7 +168,7 @@ model_summarise <- function(data, x = "x", y = "y",
                    nrmse = round(.data$nrmse, digits),
                    d = round(.data$d, digits))
         if (extra) {
-            res <- res %>%
+            res <- res |>
                 dplyr::mutate(error7day = round(.data$error7day, digits))
         }
     }
@@ -177,7 +177,7 @@ model_summarise <- function(data, x = "x", y = "y",
         if (extra) {
             cols <- c(cols, "error7day")
         }
-        res <- res %>%
+        res <- res |>
             tidyr::pivot_longer(cols = tidyselect::any_of(cols),
                                 names_to = "indicator")
     }

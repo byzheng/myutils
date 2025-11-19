@@ -41,26 +41,26 @@ test_that("Statistics functions", {
                       nrmse = 0.11,
                       d = 0.99)
 
-    res0 <- data %>%
+    res0 <- data |>
         model_summarise(digits = 2)
     expect_equal(names(res0), names(expect_value))
-    res <- res0 %>%
-        as.vector() %>%
+    res <- res0 |>
+        as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
     # Test model_summarise
-    res <- data %>%
-        model_summarise(digits = 2, direction = "long") %>%
-        magrittr::use_series("value") %>%
-        as.vector() %>%
+    res <- data |>
+        model_summarise(digits = 2, direction = "long") |>
+        dplyr::pull(value) |>
+        as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
-    res <- data %>%
-        model_summarise(digits = 2, direction = "long", nrmse_method = "mean") %>%
-        magrittr::use_series("value") %>%
-        as.vector() %>%
+    res <- data |>
+        model_summarise(digits = 2, direction = "long", nrmse_method = "mean") |>
+        dplyr::pull(value) |>
+        as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
@@ -71,17 +71,17 @@ test_that("Statistics functions", {
                       rmse = 0.63,
                       nrmse = 0.11,
                       d= 0.99, error7day = 1)
-    res <- data %>%
-        model_summarise(digits = 2, direction = "long", extra = TRUE) %>%
-        magrittr::use_series("value") %>%
-        as.vector() %>%
+    res <- data |>
+        model_summarise(digits = 2, direction = "long", extra = TRUE) |>
+        dplyr::pull(value) |>
+        as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
-    res <- data %>%
-        model_summarise(digits = 2, direction = "long", nrmse_method = "mean", extra = TRUE) %>%
-        magrittr::use_series("value") %>%
-        as.vector() %>%
+    res <- data |>
+        model_summarise(digits = 2, direction = "long", nrmse_method = "mean", extra = TRUE) |>
+        dplyr::pull(value) |>
+        as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
@@ -97,14 +97,14 @@ test_that("Statistics functions", {
 2,8,8.66079779248685
 2,9,9.62911404389888
 2,10,10.0617862704676'))
-    res <- data %>%
-        group_by(g) %>%
+    res <- data |>
+        group_by(g) |>
         model_summarise(digits = 2, direction = "wide", extra = TRUE)
     expect_equivalent(nrow(res), 2)
     expect_equivalent(ncol(res), 10)
 
-    res <- data %>%
-        group_by(g) %>%
+    res <- data |>
+        group_by(g) |>
         model_summarise(digits = 2, direction = "wide", extra = TRUE, .groups = "keep")
     expect_equivalent(is_grouped_df(res), TRUE)
 })

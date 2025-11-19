@@ -14,7 +14,6 @@ BugReports: https://github.com/byzheng/myutils/issues
 Encoding: UTF-8
 Imports:
     ggplot2,
-    magrittr,
     rlang,
     oz,
     utils,
@@ -23,9 +22,6 @@ Imports:
     tidyr,
     purrr,
     Metrics,
-    parallel,
-    snow,
-    snowfall,
     tidyselect
 RoxygenNote: 7.3.3
 Suggests: 

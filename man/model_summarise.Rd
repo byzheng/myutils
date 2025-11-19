@@ -55,8 +55,8 @@ Summarise a model with statistics indicators
 \examples{
 library(dplyr)
 data <- data.frame(x = 1:10, y = 1:10 + runif(10))
-data \%>\% model_summarise()
-data \%>\% model_summarise(digits = 2)
+data |> model_summarise()
+data |> model_summarise(digits = 2)
 # Export as long format
-data \%>\% model_summarise(digits = 2, direction = "long")
+data |> model_summarise(digits = 2, direction = "long")
 }
