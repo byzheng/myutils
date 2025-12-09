@@ -4,10 +4,12 @@
 \alias{geom_oz}
 \title{Geometry of Australia coast and state lines}
 \usage{
-geom_oz(color = "gray", ...)
+geom_oz(color = "gray", fill = NULL, ...)
 }
 \arguments{
 \item{color}{color of lines}
+
+\item{fill}{fill color for mainland and Tasmania. Default is NULL (no fill)}
 
 \item{...}{Other arguments to geom_path}
 }

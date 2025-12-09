@@ -25,23 +25,45 @@ oz_lines <- function() {
 #' Geometry of Australia coast and state lines
 #'
 #' @param color color of lines
+#' @param fill fill color for mainland and Tasmania. Default is NULL (no fill)
 #' @param ... Other arguments to geom_path
 #' @return a geom object
 #' @export
-geom_oz <- function(color = "gray", ...) {
-    ggplot2::geom_path(
+geom_oz <- function(color = "gray", fill = NULL, ...) {
+    stopifnot(length(color) == 1)
+    df <- oz_lines()
+    
+    layers <- list()
+    
+    if (!is.null(fill)) {
+        df_polygon <- df |> 
+            dplyr::filter(.data$g %in% c(1, 2, 3, 4, 5, 6, 7)) |> 
+            dplyr::mutate(polygon = ifelse(.data$g == 6, "Tasmania", "Mainland"))
+        layers[[1]] <- ggplot2::geom_polygon(
+            ggplot2::aes(
+                x = !!rlang::sym("x"),
+                y = !!rlang::sym("y"), 
+                group = !!rlang::sym("polygon")
+            ), 
+            fill = fill,
+            data = df_polygon,
+            inherit.aes = FALSE)
+    }
+    
+    layers[[length(layers) + 1]] <- ggplot2::geom_path(
         ggplot2::aes(
             x = !!rlang::sym("x"),
             y = !!rlang::sym("y"), 
             group = !!rlang::sym("g")
         ),
-        data = oz_lines(),
+        data = df,
         color = color,
+        inherit.aes = FALSE,
         ...
     )
+    
+    return(layers)
 }
-
-
 
 #' Theme for map
 #'

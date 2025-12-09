@@ -27,5 +27,10 @@ test_that("Test geom_oz", {
             geom_oz(color = "red") +
             geom_oz_states(ACT = TRUE)
     })
+    expect_no_error({
+        p <- ggplot() +
+            geom_oz(color = "red", fill = "gray") +
+            geom_oz_states(ACT = TRUE)
+    })
 
 })
