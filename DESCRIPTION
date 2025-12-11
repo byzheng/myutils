@@ -22,8 +22,7 @@ Imports:
     tidyr,
     purrr,
     Metrics,
-    tidyselect,
-    here
+    tidyselect
 RoxygenNote: 7.3.3
 Suggests: 
     testthat (>= 3.0.0)
