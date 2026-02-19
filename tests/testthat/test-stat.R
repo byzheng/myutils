@@ -20,7 +20,7 @@ test_that("Statistics functions", {
     expect_equal(nrmse(x, y, method = "mean"), 0.1238097, tolerance=1e-7)
     expect_equal(nrmse(x, y, method = "iq"), 0.1413082, tolerance=1e-7)
 
-    # Test model_summarise
+    # Test summarise_model
     data <- read.csv(file = textConnection('x,y
 1,1.2655086631421
 2,2.37212389963679
@@ -33,7 +33,7 @@ test_that("Statistics functions", {
 9,9.62911404389888
 10,10.0617862704676'))
 
-    expect_error(model_summarise(res, digits = 2, direction = "dd"))
+    expect_error(summarise_model(res, digits = 2, direction = "dd"))
     expect_value <- c(n = 10, r = 0.99, r2 = 0.99,
                       bias = -0.55,
                       mse = 0.39,
@@ -42,29 +42,41 @@ test_that("Statistics functions", {
                       d = 0.99)
 
     res0 <- data |>
-        model_summarise(digits = 2)
+        summarise_model(digits = 2)
     expect_equal(names(res0), names(expect_value))
     res <- res0 |>
         as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
-    # Test model_summarise
     res <- data |>
-        model_summarise(digits = 2, direction = "long") |>
+        summarise_model(x = x, y = y, digits = 2) |>
+        as.vector() |>
+        as.numeric()
+    expect_equivalent(res, expect_value)
+
+    res <- data |>
+        summarise_model(x = "x", y = "y", digits = 2) |>
+        as.vector() |>
+        as.numeric()
+    expect_equivalent(res, expect_value)
+
+    # Test summarise_model
+    res <- data |>
+        summarise_model(digits = 2, direction = "long") |>
         dplyr::pull(value) |>
         as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
     res <- data |>
-        model_summarise(digits = 2, direction = "long", nrmse_method = "mean") |>
+        summarise_model(digits = 2, direction = "long", nrmse_method = "mean") |>
         dplyr::pull(value) |>
         as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
-    # test extra argument for model_summarise
+    # test extra argument for summarise_model
     expect_value <- c(n = 10, r = 0.99, r2 = 0.99,
                       bias = -0.55,
                       mse = 0.39,
@@ -72,20 +84,20 @@ test_that("Statistics functions", {
                       nrmse = 0.11,
                       d= 0.99, error7day = 1)
     res <- data |>
-        model_summarise(digits = 2, direction = "long", extra = TRUE) |>
+        summarise_model(digits = 2, direction = "long", extra = TRUE) |>
         dplyr::pull(value) |>
         as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
     res <- data |>
-        model_summarise(digits = 2, direction = "long", nrmse_method = "mean", extra = TRUE) |>
+        summarise_model(digits = 2, direction = "long", nrmse_method = "mean", extra = TRUE) |>
         dplyr::pull(value) |>
         as.vector() |>
         as.numeric()
     expect_equivalent(res, expect_value)
 
-    # Test group in model_summarise
+    # Test group in summarise_model
     data <- read.csv(file = textConnection('g,x,y
 1,1,1.2655086631421
 1,2,2.37212389963679
@@ -99,13 +111,13 @@ test_that("Statistics functions", {
 2,10,10.0617862704676'))
     res <- data |>
         group_by(g) |>
-        model_summarise(digits = 2, direction = "wide", extra = TRUE)
+        summarise_model(digits = 2, direction = "wide", extra = TRUE)
     expect_equivalent(nrow(res), 2)
     expect_equivalent(ncol(res), 10)
 
     res <- data |>
         group_by(g) |>
-        model_summarise(digits = 2, direction = "wide", extra = TRUE, .groups = "keep")
+        summarise_model(digits = 2, direction = "wide", extra = TRUE, .groups = "keep")
     expect_equivalent(is_grouped_df(res), TRUE)
 })
 

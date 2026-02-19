@@ -78,8 +78,8 @@ nrmse <- function(x, y,
 #' Summarise a model with statistics indicators
 #'
 #' @param data A data frame to summarise
-#' @param x x variable name
-#' @param y y variable name
+#' @param x x variable name. Supports bare column names (e.g. \code{x}) and strings (e.g. \code{"x"}).
+#' @param y y variable name. Supports bare column names (e.g. \code{y}) and strings (e.g. \code{"y"}).
 #' @param digits integer indicating the number of decimal places (round) or significant digits (signif) to be used.
 #' @param direction the wide (default) or long format for the output
 #' @param extra summarise extra variables. \code{FALSE} in default.
@@ -106,22 +106,26 @@ nrmse <- function(x, y,
 #' @examples
 #' library(dplyr)
 #' data <- data.frame(x = 1:10, y = 1:10 + runif(10))
-#' data |> model_summarise()
-#' data |> model_summarise(digits = 2)
+#' data |> summarise_model()
+#' data |> summarise_model(x = x, y = y)
+#' data |> summarise_model(x = "x", y = "y")
+#' data |> summarise_model(digits = 2)
 #' # Export as long format
-#' data |> model_summarise(digits = 2, direction = "long")
-model_summarise <- function(data, x = "x", y = "y",
+#' data |> summarise_model(digits = 2, direction = "long")
+summarise_model <- function(data, x = "x", y = "y",
                             digits = NULL,
                             direction = c("wide", "long"),
                             extra = FALSE,
                             .groups = "drop",
                             ...) {
     direction <- match.arg(direction)
-    if (!(purrr::is_character(x) && length(x) == 1)) {
-        stop("x variable should be character with length 1: ", x)
+    x <- rlang::as_name(rlang::ensym(x))
+    y <- rlang::as_name(rlang::ensym(y))
+    if (!(x %in% names(data))) {
+        stop("Column `", x, "` not found in data.")
     }
-    if (!(purrr::is_character(y) && length(y) == 1)) {
-        stop("y variable should be character with length 1: ", y)
+    if (!(y %in% names(data))) {
+        stop("Column `", y, "` not found in data.")
     }
 
     # Check other arguments
